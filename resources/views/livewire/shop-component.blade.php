@@ -24,7 +24,8 @@
                     <div class="col-lg-9">
                         <div class="shop-product-fillter">
                             <div class="totall-product">
-                                <p> We found <strong class="text-brand">{{$products->total()}}</strong> items for you All!</p>
+                                <p> We found <strong class="text-brand">{{ $products->total() }}</strong> items for you
+                                    All!</p>
                             </div>
                             <div class="sort-by-product-area">
                                 <div class="sort-by-cover mr-10">
@@ -33,15 +34,19 @@
                                             <span><i class="fi-rs-apps"></i>Show:</span>
                                         </div>
                                         <div class="sort-by-dropdown-wrap">
-                                            <span> {{$pageSize}} <i class="fi-rs-angle-small-down"></i></span>
+                                            <span> {{ $pageSize }} <i class="fi-rs-angle-small-down"></i></span>
                                         </div>
                                     </div>
                                     <div class="sort-by-dropdown">
                                         <ul>
-                                            <li><a class="{{$pageSize==12 ? 'active' : ''}}" href="#" wire:click.prevent="changePageSize(12)">12</a></li>
-                                            <li><a class="{{$pageSize==15 ? 'active' : ''}}" href="#" wire:click.prevent="changePageSize(15)">15</a></li>
-                                            <li><a class="{{$pageSize==25 ? 'active' : ''}}" href="#" wire:click.prevent="changePageSize(25)">25</a></li>
-                                            <li><a class="{{$pageSize==32 ? 'active' : ''}}" href="#" wire:click.prevent="changePageSize(32)">32</a></li>
+                                            <li><a class="{{ $pageSize == 12 ? 'active' : '' }}" href="#"
+                                                    wire:click.prevent="changePageSize(12)">12</a></li>
+                                            <li><a class="{{ $pageSize == 15 ? 'active' : '' }}" href="#"
+                                                    wire:click.prevent="changePageSize(15)">15</a></li>
+                                            <li><a class="{{ $pageSize == 25 ? 'active' : '' }}" href="#"
+                                                    wire:click.prevent="changePageSize(25)">25</a></li>
+                                            <li><a class="{{ $pageSize == 32 ? 'active' : '' }}" href="#"
+                                                    wire:click.prevent="changePageSize(32)">32</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -51,15 +56,27 @@
                                             <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
                                         </div>
                                         <div class="sort-by-dropdown-wrap">
-                                            <span> {{$orderBy}} <i class="fi-rs-angle-small-down"></i></span>
+                                            <span> {{ $orderBy }} <i class="fi-rs-angle-small-down"></i></span>
                                         </div>
                                     </div>
                                     <div class="sort-by-dropdown">
                                         <ul>
-                                            <li><a href="#" class="{{$orderBy =='Default Sorting'? 'active' : ''}}" wire:click.prevent="changeOrderBy('Default Sorting')">Default Sorting</a></li>
-                                            <li><a href="#" class="{{$orderBy =='Price: Low to High'? 'active' : ''}}" wire:click.prevent="changeOrderBy('Price: Low to High')">Price: Low to High</a></li>
-                                            <li><a href="#" class="{{$orderBy =='Price: High to Low'? 'active' : ''}}" wire:click.prevent="changeOrderBy('Price: High to Low')">Price: High to Low</a></li>
-                                            <li><a href="#" class="{{$orderBy =='Sort By Newness'? 'active' : ''}}" wire:click.prevent="changeOrderBy('Sort By Newness')">Sort By Newness</a></li>
+                                            <li><a href="#"
+                                                    class="{{ $orderBy == 'Default Sorting' ? 'active' : '' }}"
+                                                    wire:click.prevent="changeOrderBy('Default Sorting')">Default
+                                                    Sorting</a></li>
+                                            <li><a href="#"
+                                                    class="{{ $orderBy == 'Price: Low to High' ? 'active' : '' }}"
+                                                    wire:click.prevent="changeOrderBy('Price: Low to High')">Price: Low
+                                                    to High</a></li>
+                                            <li><a href="#"
+                                                    class="{{ $orderBy == 'Price: High to Low' ? 'active' : '' }}"
+                                                    wire:click.prevent="changeOrderBy('Price: High to Low')">Price: High
+                                                    to Low</a></li>
+                                            <li><a href="#"
+                                                    class="{{ $orderBy == 'Sort By Newness' ? 'active' : '' }}"
+                                                    wire:click.prevent="changeOrderBy('Sort By Newness')">Sort By
+                                                    Newness</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -108,8 +125,9 @@
                                                 {{-- <span class="old-price">$245.8</span> --}}
                                             </div>
                                             <div class="product-action-1 show">
-                                                <a aria-label="Add To Cart" class="action-btn hover-up"
-                                                    href="#" wire:click.prevent="store({{$product->id}}, '{{$product->name}}', {{$product->regular_price}} )"><i class="fi-rs-shopping-bag-add"></i></a>
+                                                <a aria-label="Add To Cart" class="action-btn hover-up" href="#"
+                                                    wire:click.prevent="store({{ $product->id }}, '{{ $product->name }}', {{ $product->regular_price }} )"><i
+                                                        class="fi-rs-shopping-bag-add"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -130,8 +148,10 @@
                         <div class="widget-category mb-30">
                             <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
                             <ul class="categories">
-                                @foreach($categories as $category)
-                                    <li><a href="{{route('product.category',['slug'=>$category->slug])}}">{{$category->name}}</a></li>
+                                @foreach ($categories as $category)
+                                    <li><a
+                                            href="{{ route('product.category', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -143,11 +163,11 @@
                             </div>
                             <div class="price-filter">
                                 <div class="price-filter-inner">
-                                    <div id="slider-range"></div>
+                                    <div id="slider-range" wire:ignore></div>
                                     <div class="price_slider_amount">
                                         <div class="label-input">
-                                            <span>Range:</span><input type="text" id="amount" name="price"
-                                                placeholder="Add Your Price">
+                                            <span>Range:</span><span class="text-info">${{ $min_value }}</span> -
+                                            <span class="text-info">${{ $max_value }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -250,3 +270,23 @@
         </section>
     </main>
 </div>
+
+@push('scripts')
+    <script>
+        var sliderrange = $('#slider-range');
+        var amountprice = $('#amount');
+        $(function() {
+            sliderrange.slider({
+                range: true,
+                min: 0,
+                max: 1000,
+                values: [0, 1000],
+                slide: function(event, ui) {
+                    // amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
+                    @this.set('min_value',ui.values[0]);
+                    @this.set('max_value',ui.values[1]);
+                }
+            });
+        });
+    </script>
+@endpush
